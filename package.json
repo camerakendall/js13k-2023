@@ -1,5 +1,14 @@
 {
+  "name": "js13k-2023",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rollup -c"
+  },
   "dependencies": {
     "kontra": "^9.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.1"
   }
 }
