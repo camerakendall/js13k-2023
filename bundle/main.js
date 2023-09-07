@@ -1731,9 +1731,9 @@
   }
 
   console.log('hello world');
-  // const game = document.querySelector('canvas')
+  const game = document.querySelector('canvas');
   // const g = game.getContext('2d')
-  let { canvas, context } = init$1();
+  let { canvas, context } = init$1(game);
 
   let sprite = factory$8({
     x: 100,        // starting x,y position of the sprite

@@ -1,9 +1,9 @@
 import { init, Sprite, GameLoop } from 'kontra';
 
 console.log('hello world')
-// const game = document.querySelector('canvas')
+const game = document.querySelector('canvas')
 // const g = game.getContext('2d')
-let { canvas, context } = init();
+let { canvas, context } = init(game);
 
 let sprite = Sprite({
   x: 100,        // starting x,y position of the sprite
