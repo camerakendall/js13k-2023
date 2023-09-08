@@ -1,3 +1,5 @@
+
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
 (function (factory) {
   typeof define === 'function' && define.amd ? define(factory) :
   factory();
@@ -1738,7 +1740,7 @@
   let sprite = factory$8({
     x: 100,        // starting x,y position of the sprite
     y: 80,
-    color: 'red',  // fill color of the sprite rectangle
+    color: 'blue',  // fill color of the sprite rectangle
     width: 20,     // width and height of the sprite rectangle
     height: 40,
     dx: 2          // move the sprite 2px to the right every frame
