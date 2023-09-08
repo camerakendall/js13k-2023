@@ -4,9 +4,9 @@ import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
 
 export default {
-  input: 'src/main.js',
+  input: 'src/index.js',
   output: {
-    dir: 'dist',
+    file: 'dist/main.js',
     format: 'umd'
   },
   watch: true,
