@@ -6,7 +6,7 @@ import serve from 'rollup-plugin-serve';
 export default {
   input: 'src/main.js',
   output: {
-    dir: 'bundle',
+    dir: 'dist',
     format: 'umd'
   },
   watch: true,
