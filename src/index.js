@@ -34,10 +34,14 @@ const player = Sprite({
 const loop = GameLoop({  // create the main game loop
   update: function() { // update the game state
     player.update();
-context.fillStyle = '#156464'
-context.fillRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = '#156464'
+    context.fillRect(0, 0, canvas.width, canvas.height)
     // wrap the sprites position when it reaches
-    // the edge of the screen
+    // the edge of the screend
+    player.dx = 0
+    if (keys.d.pressed) player.dx = 10
+    else if (keys.a.pressed) player.dx = -10
+
     if (player.x > canvas.width) {
       player.x = -player.width;
     }
@@ -57,5 +61,46 @@ context.fillRect(0, 0, canvas.width, canvas.height)
     player.render();
   }
 });
+
+const keys = {
+  w: {
+    pressed: false
+  },
+  a: {
+    pressed: false
+  },
+  s: {
+    pressed: false
+  },
+  d: {
+    pressed: false
+  }
+}
+
+window.addEventListener('keydown', (event) => {
+  switch (event.key) {
+    case 'w':
+     player.dy = -10
+    break
+    case 'a':
+      keys.a.pressed = true
+    break
+    case 'd':
+      keys.d.pressed = true
+    break
+  }
+})
+
+window.addEventListener('keyup', (event) => {
+  switch (event.key) {
+    case 'a':
+      keys.a.pressed = false
+    break
+    case 'd': 
+      keys.d.pressed = false
+    break
+  }
+})
+
 
 loop.start();    // start the game
