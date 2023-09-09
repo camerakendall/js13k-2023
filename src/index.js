@@ -4,7 +4,7 @@ console.log('hello world')
 const game = document.querySelector('canvas')
 
 const g = game.getContext("2d")
-g.fillStyle = 'yellow'
+g.fillStyle = 'red'
 g.fillRect(10, 10, 100, 100)
 
 
