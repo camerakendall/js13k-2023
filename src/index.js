@@ -65,8 +65,8 @@ backgroundImg.src = 'img/background.png'
 // console.log(image)
 
 const player = Sprite({
-  x: 200,        // starting x,y position of the sprite
-  y: 200,
+  x: 100,        // starting x,y position of the sprite
+  y: 100,
   // color: 'yellow',  // fill color of the sprite rectangle
   // width: image.width,     // width and height of the sprite rectangle
   // height: image.height,
@@ -137,23 +137,18 @@ const loop = GameLoop({  // create the main game loop
 
     // wrap the sprites position when it reaches
     // the edge of the screend
-    if (player.x > canvas.width) {
-      player.x = -player.width;
+    // right wrapping
+    if (player.x > canvas.width ) {
+      player.x = 0;
     }
-
-    //how to wrap in other direction?
-    if (player.x < canvas.width - canvas.width) {
-      player.x = -player.width + canvas.width ;
+    if (player.x < 0 ) {
+      player.x = canvas.width;
     }
-
-    //beginning gravity logic
-    if(player.y + player.height + player.dy < canvas.height) {
-      // console.log('i\'m in the air')
-      player.dy += gravity
-    } else {
+    if (player.y < 0 ) {
       player.dy = 0
+      player.y = 0
     }
-
+  
 
     //beginning collision logic
     const playerBottom = player.y + player.height
@@ -167,12 +162,34 @@ const loop = GameLoop({  // create the main game loop
     const holyGrailRight = holyGrail.x + holyGrail.width
 
 
-
+    //needs to be before gravity logic
     if(playerBottom >= holyGrailTop && playerTop <= holyGrailBottom && playerLeft <= holyGrailRight && playerRight >= holyGrailLeft){
         if(player.dy > 0){
           player.dy = 0
+          player.y = holyGrail.y - player.height - 0.01
+        }
+        if(player.dy < 0){
+          player.dy = 0
+          player.y = holyGrail.y + holyGrail.height + 0.01
+        }
+        if(player.dx > 0){
+          player.dx = 0
+          // player.x = holyGrail.x - player.width - 0.01
+        }
+          if(player.dx < 0){
+          player.dx = 0
+          // player.x = holyGrail.x + holyGrail.width + 0.01
         }
     }
+
+        //beginning gravity logic
+        if(player.y + player.height + player.dy < canvas.height) {
+          // console.log('i\'m in the air')
+          player.dy += gravity
+        } else {
+          player.dy = 0
+        }
+    
 
   },
   render: function() { // render the game state
