@@ -144,7 +144,7 @@ holyGrailImage.onload= () => {
 
 enemyKnightImage.onload= () => {
   enemy.width = enemyKnightImage.width
-  enemy.height = enemyKnightImage.height + enemyKnightImage.dy
+  enemy.height = enemyKnightImage.height
   // player.render()
 }
 
@@ -222,38 +222,19 @@ const loop = GameLoop({  // create the main game loop
     const holyGrailLeft = holyGrail.x
     const holyGrailRight = holyGrail.x + holyGrail.width
 
-    // console.log(holyGrail.height, holyGrail.width)
-    //needs to be before gravity logic
-
-    if(playerLeft <= holyGrailRight && playerRight >= holyGrailLeft && playerBottom >= holyGrailTop && playerTop <= holyGrailBottom ){
+    //collision detection needs to be before gravity logic
+    //player and holyGrail collision detection
+    if(playerLeft <= enemyRight && playerRight >= enemyLeft && playerBottom >= enemyTop && playerTop <= enemyBottom ){
+      console.log('collidingenemy')
+    }
+    // enemy and holyGrail collision detection
+    //when triggered need to end game/show end game screen and points
+    if(enemyLeft <= holyGrailRight && enemyRight >= holyGrailLeft && enemyBottom >= holyGrailTop && enemyTop <= holyGrailBottom ){
       console.log('colliding')
-
     }
 
-    // if(playerBottom <= holyGrailTop && playerTop >= holyGrailBottom &&playerLeft <= holyGrailRight && playerRight >= holyGrailLeft){
-    //   console.log('colliding')
-    // }
-      // if(playerBottom <= holyGrailTop && playerBottom + player.dy >= holyGrailTop){
-    //     if(player.dy > 0){
-    //       player.dy = 0
-    //       player.y = holyGrail.y - player.height - 0.01
-    //     }
-    //     if(player.dy < 0){
-    //       player.dy = 0
-    //       player.y = holyGrail.y + holyGrail.height + 0.01
-    //     }
-    //     // moving to the right
-    //     // if(player.dx > 0){
-    //     //   player.dx = 0
-    //     //   player.x = holyGrail.x - player.width - 0.01
-    //     //   // player.x = 0
-    //     // }
-    //     // //moving to the left
-    //     //   if(player.dx < 0){
-    //     //   player.dx = 0
-    //     //   // player.x = holyGrail.x + holyGrail.width + 0.01
-    //     // }
-    // }
+  
+
 
 
 /* 
@@ -262,7 +243,6 @@ GRAVITY
 **************************
 */
         if(player.y + player.height + player.dy < canvas.height) {
-          // console.log('i\'m in the air')
           player.dy += gravity
         } else {
           player.dy = 0
