@@ -61,8 +61,14 @@ spriteImage.src = 'img/knight.png'
 
 const backgroundImg = new Image()
 backgroundImg.src = 'img/background.png'
-// console.log(image.src)
-// console.log(image)
+
+const grailImage = new Image()
+grailImage.src = 'img/grail.png'
+
+const enemyKnightImage = new Image()
+enemyKnightImage.src = 'img/enemyknight.png'
+
+
 
 const player = Sprite({
   x: 100,        // starting x,y position of the sprite
@@ -78,13 +84,13 @@ const player = Sprite({
 
 const holyGrail = Sprite({
   x: 375,        // starting x,y position of the sprite
-  y: 325,
-  color: 'yellow',  // fill color of the sprite rectangle
-  width:  50,     // width and height of the sprite rectangle
-  height: 50,
+  y: 300,
+  // color: 'yellow',  // fill color of the sprite rectangle
+  // width:  50,     // width and height of the sprite rectangle
+  // height: 50,
   // dx: 2,          // move the sprite 2px to the right every frame
   // dy: 2,
-  // image: spriteImage
+  image: grailImage
 });
 
 
@@ -92,12 +98,12 @@ const holyGrail = Sprite({
 const enemy = Sprite({
   x: 100,        // starting x,y position of the sprite
   y: 50,
-  color: 'green',  // fill color of the sprite rectangle
-  width:  50,     // width and height of the sprite rectangle
-  height: 50,
+  // color: 'green',  // fill color of the sprite rectangle
+  // width:  50,     // width and height of the sprite rectangle
+  // height: 50,
   dx: 2,          // move the sprite 2px to the right every frame
   dy: 2,
-  // image: spriteImage
+  image: enemyKnightImage
 });
 
 const background = Sprite({
@@ -114,6 +120,12 @@ const background = Sprite({
 spriteImage.onload= () => {
   player.width = spriteImage.width
   player.height = spriteImage.height + player.dy
+  // player.render()
+}
+
+enemyKnightImage.onload= () => {
+  enemy.width = enemyKnightImage.width
+  enemy.height = enemyKnightImage.height + enemyKnightImage.dy
   // player.render()
 }
 
@@ -163,24 +175,29 @@ const loop = GameLoop({  // create the main game loop
 
 
     //needs to be before gravity logic
-    if(playerBottom >= holyGrailTop && playerTop <= holyGrailBottom && playerLeft <= holyGrailRight && playerRight >= holyGrailLeft){
-        if(player.dy > 0){
-          player.dy = 0
-          player.y = holyGrail.y - player.height - 0.01
-        }
-        if(player.dy < 0){
-          player.dy = 0
-          player.y = holyGrail.y + holyGrail.height + 0.01
-        }
-        if(player.dx > 0){
-          player.dx = 0
-          // player.x = holyGrail.x - player.width - 0.01
-        }
-          if(player.dx < 0){
-          player.dx = 0
-          // player.x = holyGrail.x + holyGrail.width + 0.01
-        }
-    }
+    //working ish
+    // if(playerBottom >= holyGrailTop && playerTop <= holyGrailBottom && playerLeft <= holyGrailRight && playerRight >= holyGrailLeft){
+    //   // if(playerBottom <= holyGrailTop && playerBottom + player.dy >= holyGrailTop){
+    //     if(player.dy > 0){
+    //       player.dy = 0
+    //       player.y = holyGrail.y - player.height - 0.01
+    //     }
+    //     if(player.dy < 0){
+    //       player.dy = 0
+    //       player.y = holyGrail.y + holyGrail.height + 0.01
+    //     }
+    //     // moving to the right
+    //     // if(player.dx > 0){
+    //     //   player.dx = 0
+    //     //   player.x = holyGrail.x - player.width - 0.01
+    //     //   // player.x = 0
+    //     // }
+    //     // //moving to the left
+    //     //   if(player.dx < 0){
+    //     //   player.dx = 0
+    //     //   // player.x = holyGrail.x + holyGrail.width + 0.01
+    //     // }
+    // }
 
         //beginning gravity logic
         if(player.y + player.height + player.dy < canvas.height) {
@@ -194,9 +211,10 @@ const loop = GameLoop({  // create the main game loop
   },
   render: function() { // render the game state
     background.render()
+    holyGrail.render()
     player.render();
     enemy.render()
-    holyGrail.render()
+   
     
   }
 });
