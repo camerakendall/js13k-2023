@@ -96,18 +96,6 @@ const holyGrail = Sprite({
   image: holyGrailImage
 });
 
-// const enemy = Sprite({
-//   x: randInt(300, 800),
-//   y: -randInt(0, 100),
-//   dx: -1, 
-//   dy: 1,
-//   image: enemyKnightImage,
-//   damage: false,
-//   spawnTime: 200,
-//   timer: 0,
-//   draw: () => context.drawImage(enemyKnightImage, 500, 500)
-// });
-
 
 class enemy extends SpriteClass {
   constructor(){
@@ -117,7 +105,7 @@ class enemy extends SpriteClass {
   this.dx = -2, 
   this.dy = 2,
   this.image = enemyKnightImage,
-  this.spawnTime = 100,
+  this.spawnTime = 20,
   this.timer = 0,
   this.height = enemyKnightImage.height,
   this.width = enemyKnightImage.width
@@ -165,26 +153,9 @@ GAME LOOP
 */
 const loop = GameLoop({  // create the main game loop
   update: function() { // update the game state
-    // console.log(enemyInstance)
-    // enemyInstance.update()
+
     player.update();
 
-    const playerBottom = player.y + player.height
-    const playerTop = player.y
-    const playerLeft = player.x
-    const playerRight = player.x + player.width
-
-    // const enemyInstanceBottom = enemyInstance.y + enemyInstance.height
-    // const enemyInstanceTop = enemyInstance.y
-    // const enemyInstanceLeft = enemyInstance.x
-    // const enemyInstanceRight = enemyInstance.x + enemyInstance.width
-
-    const holyGrailBottom = holyGrail.y + holyGrail.height
-    const holyGrailTop = holyGrail.y
-    const holyGrailLeft = holyGrail.x
-    const holyGrailRight = holyGrail.x + holyGrail.width
-   
-   
     enemyArray.forEach( enemy => { enemy.update()
       if(collides(enemy, player) ){
         // enemy.damage = true
@@ -194,22 +165,19 @@ const loop = GameLoop({  // create the main game loop
         console.log(points)
       }
       if(collides(enemy, holyGrail)){
+        loop.stop()
+        alert(`You lose. Points: ${points}`)
         console.log('colliding grail')
+        
       }
-    
-    
     })
     
-
 
     if (enemyInstance.timer <enemyInstance.spawnTime){
      enemyInstance.timer += 1
     } else {
       enemyArray.push(new enemy)
-      // enemyArray.forEach( enemy => enemy.update())
-      // enemy.render()
      enemyInstance.timer  = 0
-
     }
 
     
@@ -217,11 +185,6 @@ const loop = GameLoop({  // create the main game loop
     if (keys.d.pressed) {
       player.dx = 10 
     } else if (keys.a.pressed) player.dx = -10
-
-    //attack logic?
-    if(keys.spacebar.pressed){
-      console.log('pressed spacebar')
-    }
 
     // wrap the sprites position when it reaches
     // the edge of the screend
@@ -237,26 +200,6 @@ const loop = GameLoop({  // create the main game loop
       player.y = 0
     }
   
-
-  
-
-    //collision detection needs to be before gravity logic
-    //player and enemy collision detection
-    // if(playerLeft <= enemyInstanceRight && playerRight >= enemyInstanceLeft && playerBottom >= enemyInstanceTop && playerTop <= enemyInstanceBottom ){
-    //   // enemy.damage = true
-    //   enemyInstance.x = -500
-    //   points += 1
-    //   console.log(points)
-    // }
-
-
-    // enemy and holyGrail collision detection
-    //when triggered need to end game/show end game screen and points
-    // if(enemyInstanceLeft <= holyGrailRight && enemyInstanceRight >= holyGrailLeft && enemyInstanceBottom >= holyGrailTop && enemyInstanceTop <= holyGrailBottom ){
-    //   console.log('colliding')
-    // }
-
-
 /* 
 **************************
 GRAVITY

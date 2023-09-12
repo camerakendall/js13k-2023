@@ -6,7 +6,9 @@
     "build": "rollup -c --watch"
   },
   "dependencies": {
-    "kontra": "^9.0.0"
+    "kontra": "^9.0.0",
+    "mkdirp": "^3.0.1",
+    "rollup-plugin-minify": "^1.0.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.4",

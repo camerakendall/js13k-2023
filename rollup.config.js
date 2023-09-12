@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
 
+
 export default {
   input: 'src/index.js',
   output: {
@@ -14,7 +15,8 @@ export default {
           resolve(),
           commonjs(),
           livereload(),
-          serve() 
+          serve(), 
+   
   ],
   
 };
