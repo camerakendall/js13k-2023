@@ -2,14 +2,7 @@ import {collides, SpriteClass, randInt, init, Sprite, GameLoop } from 'kontra';
 
 const game = document.querySelector('canvas')
 
-// const g = game.getContext("2d")
-// g.fillStyle = 'yellow'
-// g.fillRect(10, 10, 100, 100)
-
-
 let { canvas, context } = init(game);
-// console.log(canvas)
-
 
 canvas.height = 600
 canvas.width = 800
@@ -79,14 +72,12 @@ const enemyKnightImage = new Image()
 enemyKnightImage.src = 'img/enemyknight.png'
 
 
-
 const player = Sprite({
   x: 100,       
   y: 450,
   dx: 2,          
   dy: 2,
   image: spriteImage,
-  
 });
 
 
@@ -158,17 +149,12 @@ const loop = GameLoop({  // create the main game loop
 
     enemyArray.forEach( enemy => { enemy.update()
       if(collides(enemy, player) ){
-        // enemy.damage = true
-        console.log(enemy.height, enemy.width)
         enemy.x = -500
         points += 1
-        console.log(points)
       }
       if(collides(enemy, holyGrail)){
         loop.stop()
         alert(`You lose. Points: ${points}`)
-        console.log('colliding grail')
-        
       }
     })
     
@@ -202,7 +188,7 @@ const loop = GameLoop({  // create the main game loop
   
 /* 
 **************************
-GRAVITY
+GRAVITY LOGIC
 **************************
 */
         if(player.y + player.height + player.dy < canvas.height) {
@@ -220,13 +206,7 @@ RENDER
     background.render()
     holyGrail.render()
     player.render()
- 
-    // enemyInstance.render()
-    
     enemyArray.forEach( enemy => enemy.render())
- 
-  
-    
   }
 });
 
