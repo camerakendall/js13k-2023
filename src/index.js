@@ -121,10 +121,6 @@ holyGrailImage.onload= () => {
   holyGrail.height = holyGrailImage.height
 }
 
-// enemyKnightImage.onload= () => {
-//   enemy.width = enemyKnightImage.width
-//   enemy.height = enemyKnightImage.height
-// }
 
 backgroundImg.onload= () => {
   context.fillStyle = '#071733'

@@ -29,3 +29,5 @@ Create build
 ```sh
 npm run build
 ```
+
+Made with Kontra.js
